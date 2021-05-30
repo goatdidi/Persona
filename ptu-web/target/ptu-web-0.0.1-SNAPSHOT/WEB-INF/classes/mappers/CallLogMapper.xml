@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.etime.ptu.dao.CallLogMapper">
+
+	<sql id="Base_Column_List">
+		id, telnum, year, month, day, telcount, telcallingcount,
+		telcalledcount,
+		telsum,
+		telcallingsum, telcalledsum
+	</sql>
+	<!-- 按月查询指定用户的通话记录 -->
+	<select id="selectCustomerLogByMonth" resultType="edu.etime.ptu.pojo.CallLog"
+		parameterType="edu.etime.ptu.pojo.CallLog">
+		select telnum, month, day, telcount, telcallingcount,
+		telcalledcount,
+		telsum,
+		telcallingsum, telcalledsum from calllog
+		where
+		telnum =#{telnum} and year=#{year} and month=#{month}
+		order by day asc
+	</select>
+	<!-- 按年统计用户的通话记录 -->
+
+</mapper>
